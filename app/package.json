@@ -1,0 +1,24 @@
+{
+  "name": "mkp-app",
+  "version": "1.0.0",
+  "description": "App React - Cálculo de MarkUp (Preço de Venda de Produtos)",
+  "main": "index.js",
+  "scripts": {
+    "start": "vite build && vite preview --port 3000",
+    "dev": "vite --port 3000",
+    "build": "vite build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["markup", "react", "preco-venda"],
+  "author": "Equipe MKP",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.23.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.2.11"
+  }
+}
