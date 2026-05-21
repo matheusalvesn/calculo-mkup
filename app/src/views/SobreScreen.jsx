@@ -1,11 +1,13 @@
 import Navbar from '../components/Navbar';
+import fotoCaua from '../assets/CauaMartinho.png';
+import fotoMatheus from '../assets/matheus.jpeg';
 
 const membros = [
-  { initials: 'CS', name: 'Caua Martinho da Silva', role: 'BACK-END / CI-CD', hue: 'rgba(10,110,79,0.18)' },
-  { initials: 'I2', name: 'Integrante 2',           role: 'FRONT-END',        hue: 'rgba(10,10,10,0.07)'  },
+  { initials: 'CS', name: 'Caua Martinho da Silva', role: 'BACK-END / CI-CD', hue: 'rgba(10,110,79,0.18)', photo: fotoCaua },
+  { initials: 'MA', name: 'Matheus Alves',           role: 'FRONT-END',        hue: 'rgba(10,10,10,0.07)',  photo: fotoMatheus },
 ];
 
-function TeamPhoto({ initials, name, role, hue }) {
+function TeamPhoto({ initials, name, role, hue, photo }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
       <div style={{
@@ -14,16 +16,21 @@ function TeamPhoto({ initials, name, role, hue }) {
         border: '1px solid var(--hair)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
       }}>
-        <div style={{
-          width: 52, height: 52, borderRadius: 26, background: '#fff',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontFamily: 'var(--font)', fontSize: 18, fontWeight: 500, color: 'var(--ink)',
-          border: '1px solid var(--hair)',
-        }}>{initials}</div>
-        <div style={{
-          position: 'absolute', bottom: 6, left: 8,
-          fontFamily: 'var(--mono)', fontSize: 8, letterSpacing: 1, color: 'var(--muted)', textTransform: 'uppercase',
-        }}>foto</div>
+        {photo
+          ? <img src={photo} alt={name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+          : <>
+              <div style={{
+                width: 52, height: 52, borderRadius: 26, background: '#fff',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontFamily: 'var(--font)', fontSize: 18, fontWeight: 500, color: 'var(--ink)',
+                border: '1px solid var(--hair)',
+              }}>{initials}</div>
+              <div style={{
+                position: 'absolute', bottom: 6, left: 8,
+                fontFamily: 'var(--mono)', fontSize: 8, letterSpacing: 1, color: 'var(--muted)', textTransform: 'uppercase',
+              }}>foto</div>
+            </>
+        }
       </div>
       <div>
         <div style={{ fontFamily: 'var(--font)', fontSize: 13, color: 'var(--ink)', fontWeight: 500 }}>{name}</div>
