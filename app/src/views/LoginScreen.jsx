@@ -48,7 +48,7 @@ export default function LoginScreen() {
         sessionStorage.setItem('mkp_auth', 'true');
         navigate('/home');
       } else {
-        setError('Usuario ou senha invalidos');
+        setError('Usuario ou senha inválidos');
         setLoading(false);
       }
     }, 400);
