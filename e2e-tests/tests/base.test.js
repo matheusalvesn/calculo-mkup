@@ -45,12 +45,11 @@ async function main() {
     console.log('✅ Teste de login inválido passou');
 
     // ── Teste 3: Login correto → redireciona para /home ───────────────────
-    await driver.findElement(By.id('username')).clear();
-    await driver.findElement(By.id('password')).clear();
+    await driver.get(BASE_URL + '/login');
     await driver.findElement(By.id('username')).sendKeys('admin');
     await driver.findElement(By.id('password')).sendKeys('admin');
     await driver.findElement(By.id('loginForm')).submit();
-    await new Promise(r => setTimeout(r, 1000));
+    await driver.wait(until.urlContains('/home'), 5000);
     await tiraFoto('Login Correto');
 
     const url = await driver.getCurrentUrl();
@@ -62,6 +61,18 @@ async function main() {
     await new Promise(r => setTimeout(r, 500));
     await tiraFoto('Tela Calculo');
     console.log('✅ Tela de cálculo acessada');
+
+    // ── Teste 5: Calculo de MarkUp na tela ────────────────────────────────
+    await driver.findElement(By.id('f-cost')).sendKeys('100');
+    await driver.findElement(By.id('f-mk')).sendKeys('30');
+    await driver.findElement(By.xpath("//main//button[normalize-space()='Calcular']")).click();
+
+    await driver.wait(async () => {
+      const bodyText = await driver.findElement(By.tagName('body')).getText();
+      return bodyText.includes('R$ 142.86');
+    }, 5000);
+    await tiraFoto('Calculo MarkUp');
+    console.log('✅ Calculo de MarkUp passou');
 
   } finally {
     if (driver) await driver.quit();

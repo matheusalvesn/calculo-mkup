@@ -47,7 +47,4 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
 cronograma_markup.docx
-e2e-tests/package-lock.json
 e2e-tests/screenshots
-api/package-lock.json
-app/package-lock.json
